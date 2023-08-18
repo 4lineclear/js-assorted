@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>JSON Minifier</title>
+        <!-- <script type="text/javascript" src="https://livejs.com/live.js"></script> -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen"
+            href="/main.css"
+        />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen"
+            href="css/minifier.css"
+        />
+        <link type="image/png" sizes="16x16" rel="icon" href="/favicon" />
+    </head>
+    <body>
+        <a href="/" class="home-page">Home Page</a>
+        <h1>Simple JSON Minifier</h1>
+        <div id="text-box-holder">
+            <textarea
+                name="input"
+                id="input"
+                wrap="off"
+                spellcheck="false"
+            ></textarea>
+            <textarea
+                name="output"
+                id="output"
+                wrap="off"
+                spellcheck="false"
+            ></textarea>
+        </div>
+        <div id="button-holder">
+            <div onclick="copyToClipboard('input')">
+                <button>Copy Inputted</button>
+            </div>
+            <div onclick="minify()"><button>Minify</button></div>
+            <div onclick="copyToClipboard('output')">
+                <button>Copy Minified</button>
+            </div>
+        </div>
+        <script>
+            function isWhitespace(char) {
+                return (
+                    char === " " ||
+                    char === "\n" ||
+                    char === "\t" ||
+                    char === "\r" ||
+                    char === "\f" ||
+                    char === "\v" ||
+                    char === "\u00a0" ||
+                    char === "\u1680" ||
+                    char === "\u2000" ||
+                    char === "\u200a" ||
+                    char === "\u2028" ||
+                    char === "\u2029" ||
+                    char === "\u202f" ||
+                    char === "\u205f" ||
+                    char === "\u3000" ||
+                    char === "\ufeff"
+                );
+            }
+            function minify() {
+                const input = document.getElementById("input").value;
+                let output = "";
+                let inQuotes = false;
+                for (let i = 0; i < input.length; i++) {
+                    const char = input.charAt(i);
+                    if (char === '"') {
+                        output += '"';
+                        inQuotes = !inQuotes;
+                    } else if (isWhitespace(char)) {
+                        if (inQuotes) output += char;
+                    } else {
+                        output += char;
+                    }
+                }
+                document.getElementById("output").value = output;
+            }
+            function copyToClipboard(source) {
+                navigator.clipboard.writeText(
+                    document.getElementById(source).value
+                );
+            }
+        </script>
+    </body>
+</html>

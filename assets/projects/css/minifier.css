@@ -1,0 +1,32 @@
+html,
+body {
+    height: 90%;
+}
+#text-box-holder {
+    height: 100%;
+}
+textarea {
+    resize: none;
+    width: calc(40%);
+    height: 100%;
+}
+#button-holder {
+    width: 100;
+}
+button {
+    padding: 1em;
+    margin: 2em 1em;
+    font: 1em;
+    background-color: gray;
+    border-radius: 10px;
+    width: 100px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: darkgray;
+}
+button:active {
+    transform: scale(0.8);
+}
