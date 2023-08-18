@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Assorted JS</title>
+        <!-- <script type="text/javascript" src="https://livejs.com/live.js"></script> -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen"
+            href="/main.css"
+        />
+        <link type="image/png" sizes="16x16" rel="icon" href="/favicon" />
+    </head>
+    <body>
+        <h1>Assorted WebDev projects by 4lineclear</h1>
+        <p>
+            Made using Axum, vanilla HTML, CSS & JS.
+            <a
+                target="_blank"
+                href="https://icons8.com/icon/PXTY4q2Sq2lG/javascript"
+                >Favicon</a
+            >
+            by <a target="_blank" href="https://icons8.com">Icons8</a>
+        </p>
+        <h2>Projects</h2>
+        <ul id="project-list"></ul>
+        <script>
+            async function fetch_projects() {
+                let response = await fetch("/projects");
+
+                if (response.status === 200) {
+                    let files = await response.json();
+                    let project_list = document.getElementById("project-list");
+                    files.forEach((file) => {
+                        let li = document.createElement("li");
+                        li.innerHTML =
+                            '<a href="/project/' +
+                            file +
+                            '">' +
+                            file.replace(/\.[^/.]+$/, "").replace("_", " ") +
+                            "</a>";
+                        project_list.appendChild(li);
+                    });
+                }
+            }
+            fetch_projects();
+        </script>
+    </body>
+</html>

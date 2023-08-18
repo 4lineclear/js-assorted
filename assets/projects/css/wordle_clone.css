@@ -1,0 +1,85 @@
+div#guess-holder {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+}
+div.guess-box {
+    justify-content: center;
+    align-content: center;
+    padding: 0.5em;
+    margin: 0.1em;
+    height: 0.8em;
+    width: 0.7em;
+    font-size: 1.8em;
+    font-weight: 900;
+    text-align: center;
+    border: 2px solid gray;
+}
+div#keyboard {
+    margin-top: 10px;
+    flex-direction: column;
+}
+div.keyboard-tile {
+    justify-content: center;
+    align-content: center;
+    background-color: gray;
+    font-size: 1.5em;
+    border-radius: 0.2em;
+    height: 1.3em;
+    width: 0.8em;
+    padding: 0.5em;
+    margin: 0.15em;
+    cursor: pointer;
+}
+div.keyboard-tile:hover {
+    background-color: #a0a0a0;
+}
+#backspace {
+    /* should be perfect width to make the top & bottom rows the same */
+    width: 1.85em;
+    fill: white;
+}
+#enter {
+    /* normal values multiplied by 1.5 */
+    font-size: 16px;
+    border-radius: 0.3em;
+    height: 1.95em;
+    /* should be perfect width to make the top & bottom rows the same */
+    width: 2.775em;
+    padding: 0.75em;
+    margin: 0.225em;
+}
+.correct {
+    background-color: green;
+}
+.almost {
+    background-color: #b59f3b;
+}
+.wrong {
+    background-color: darkgray;
+}
+.popup {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 250ms ease-in, visibility 0ms ease-in 250ms;
+}
+.popup > div {
+    position: fixed;
+    background-color: white;
+    color: black;
+    border-radius: 0.5em;
+    padding: 1em;
+}
+.popup.show {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 250ms ease-in, visibility 0ms ease-in 0ms;
+}
+@media screen and (prefers-color-scheme: light) {
+    .popup > div {
+        background-color: black;
+        color: white;
+    }
+    #backspace {
+        fill: black;
+    }
+}

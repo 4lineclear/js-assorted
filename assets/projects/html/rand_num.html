@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Random Number Generator</title>
+        <!-- <script type="text/javascript" src="https://livejs.com/live.js"></script> -->
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen"
+            href="/main.css"
+        />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="screen"
+            href="/project/css/rand_num.css"
+        />
+        <link type="image/png" sizes="16x16" rel="icon" href="/favicon" />
+    </head>
+    <body>
+        <a href="/" class="home-page">Home Page</a>
+        <h1>Random number generator</h1>
+        <div>
+            <h2>Minimum(inclusive)</h2>
+            <input
+                value="0"
+                type="text"
+                name="min"
+                id="min"
+                class="num-box"
+                onkeypress="return isNumber(event)"
+                placeholder="Minimum"
+            />
+        </div>
+        <div>
+            <h2>Maximum(exclusive)</h2>
+            <input
+                value="10"
+                type="text"
+                name="max"
+                id="max"
+                class="num-box"
+                onkeypress="return isNumber(event)"
+                placeholder="Maximum"
+            />
+        </div>
+        <div><button onclick="genNumber()">Generate</button></div>
+        <div><h2 id="rand-number"></h2></div>
+        <script>
+            function isNumber(evt) {
+                evt = evt ? evt : window.event;
+                let charCode = evt.which ? evt.which : evt.keyCode;
+                if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                    return false;
+                }
+                return true;
+            }
+            function genNumber() {
+                let min = document.getElementById("min").value;
+                let max = document.getElementById("max").value;
+                if (Number(min) > Number(max)) {
+                    document.getElementById("rand-number").innerHTML =
+                        '<span style="color:red">Invalid range</span>';
+                    return;
+                }
+                let rand =
+                    Math.floor(Math.random() * (max - min)) + Number(min);
+                document.getElementById("rand-number").style.color = "green";
+                document.getElementById("rand-number").innerHTML = rand;
+            }
+        </script>
+    </body>
+</html>
